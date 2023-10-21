@@ -11,9 +11,11 @@ public class IndexModel : PageModel
     {
         _logger = logger;
     }
-
+    [ViewData]
+    public string Message { get; set; } = "sample message";
     public void OnGet()
     {
+        Message = "これは新たに設定されたメッセージです！！";
 
     }
 }
