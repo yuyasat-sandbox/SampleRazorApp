@@ -26,7 +26,7 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        Message = "これは新たに設定されたメッセージです！！";
+        Message = "何か書いてください。";
 
     }
 
