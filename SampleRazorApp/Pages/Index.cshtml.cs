@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace SampleRazorApp.Pages;
 
@@ -13,16 +14,18 @@ public class IndexModel : PageModel
     }
 
     public string Message { get; set; } = "sample message";
-    private string Name = "no-name";
-    private string Mail = "no-mail";
-    private string[][] data = new string[][]
-    {
-        new string []{"Taro", "taro@yamada"},
-        new string []{"Hanako", "hanako@flower"},
-        new string []{"Sachiko", "sachiko@happy"},
-    };
-    [BindProperty(SupportsGet = true)]
-    public int id { get; set; }
+
+    [DataType(DataType.Text)]
+    public string Name { get; set; }
+
+    [DataType(DataType.Password)]
+    public string Password { get; set; }
+
+    [DataType(DataType.EmailAddress)]
+    public string Mail { get; set; }
+
+    [DataType(DataType.PhoneNumber)]
+    public string Tel { get; set; }
 
     public void OnGet()
     {
@@ -30,10 +33,9 @@ public class IndexModel : PageModel
 
     }
 
-    public string getData(int id)
+    public void OnPost(string name, string password, string mail, string tel)
     {
-        string[] target = data[id];
-        return "[名前:" + target[0] + ", メール:" + target[1] + "]";
+        Message = "[Name: " + name + ", password:(" + password.Length + " chargs), mail:" + mail + " <" + tel + ">]";
     }
 }
 
