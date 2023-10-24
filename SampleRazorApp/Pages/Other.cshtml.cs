@@ -5,8 +5,8 @@ namespace SampleRazorApp.Pages
 {
     public enum Gender
     {
-        mail,
-        femail
+        male,
+        female
     }
     public enum Platform
     {
