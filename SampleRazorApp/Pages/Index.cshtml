@@ -1,4 +1,4 @@
-﻿@page "{id?}"
+﻿@page "{num?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -56,5 +56,9 @@
             }
         }
     </ul>
+</div>
+<div>
+    <h2 class="display-4 mb-4">Welcome</h2>
+    <p class="h4">@(Model.Num)は、<b>@(Model.Num % 2 == 0 ? "偶数" : "奇数")</b>です。</b></p>
 </div>
 

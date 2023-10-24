@@ -27,6 +27,9 @@ public class IndexModel : PageModel
     [DataType(DataType.PhoneNumber)]
     public string Tel { get; set; }
 
+    [BindProperty(SupportsGet = true)]
+    public int Num { get; set; }
+
     public void OnGet()
     {
         Message = "何か書いてください。";
@@ -37,5 +40,6 @@ public class IndexModel : PageModel
     {
         Message = "[Name: " + name + ", password:(" + password.Length + " chargs), mail:" + mail + " <" + tel + ">]";
     }
+
 }
 
