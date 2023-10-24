@@ -27,4 +27,34 @@
         <input type="submit" class="btn btn-primary" />
     </form>
 </div>
+<div>
+    <h2 class="display-4 mb-4">Welcome</h2>
+    <ul>
+        @{
+            int totalp = 0;
+            int totaln = 0;
+        }
+        @for (int i = 2; i <= 20; i++)
+        {
+            bool flg = true;
+            @for (int j = 2; j <= i / 2; j++)
+            {
+                @if (i % j == 0)
+                {
+                    flg = false;
+                }
+            }
+            @if (flg)
+            {
+                totalp += i;
+                <li>@i は素数です。(total:@totalp)</li>
+            }
+            else
+            {
+                totaln += i;
+                <li>@i は素数でない。[total:@totaln]</li>
+            }
+        }
+    </ul>
+</div>
 
