@@ -2,8 +2,39 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-}
 
+    string[] data = new[] { "one", "two", "three", "four", "five" };
+    Func<dynamic, object> hello0 = @<p class="display-4">
+        Hello,
+        @item !!
+    </p>;
+
+Func<dynamic, object> showList = @<ul class="h4">
+    @foreach (var ob in item)
+    {
+        <li>@ob</li>
+    }
+</ul>;
+}
+@functions
+{
+    string hello(string name)
+    {
+        return "Hello, " + name + "!!";
+    }
+    int total(int n)
+    {
+        int re = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            re += i;
+        }
+        return re;
+    }
+}
+@section between {
+    <p class="container alert alert-primary">※これはヘッダーとコンテンツの間に表示されます。</p>
+}
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p class="h4">@Model.Message</p>
@@ -58,7 +89,13 @@
     </ul>
 </div>
 <div>
-    <h2 class="display-4 mb-4">Welcome</h2>
     <p class="h4">@(Model.Num)は、<b>@(Model.Num % 2 == 0 ? "偶数" : "奇数")</b>です。</b></p>
 </div>
-
+<div>
+    <p class="h4">@hello("太郎")</p>
+    <p class="h4">@Model.Num の合計は、@total(Model.Num) 。</p>
+</div>
+<div>
+    <h2 class="display-4 mb-4">@hello0("Hanako")</h2>
+    <p class="h4">@showList(data)</p>
+</div>
