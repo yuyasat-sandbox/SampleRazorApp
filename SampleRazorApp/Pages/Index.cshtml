@@ -1,101 +1,48 @@
-﻿@page "{num?}"
-@model IndexModel
+@page
+@model SampleRazorApp.Pages.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Index";
+}
 
-    string[] data = new[] { "one", "two", "three", "four", "five" };
-    Func<dynamic, object> hello0 = @<p class="display-4">
-        Hello,
-        @item !!
-    </p>;
+<h1>Index</h1>
 
-Func<dynamic, object> showList = @<ul class="h4">
-    @foreach (var ob in item)
-    {
-        <li>@ob</li>
-    }
-</ul>;
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Person) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PersonId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PersonId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PersonId">Delete</a>
+            </td>
+        </tr>
 }
-@functions
-{
-    string hello(string name)
-    {
-        return "Hello, " + name + "!!";
-    }
-    int total(int n)
-    {
-        int re = 0;
-        for (int i = 1; i <= n; i++)
-        {
-            re += i;
-        }
-        return re;
-    }
-}
-@section between {
-    <p class="container alert alert-primary">※これはヘッダーとコンテンツの間に表示されます。</p>
-}
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p class="h4">@Model.Message</p>
-    <form asp-page="Index">
-        <div class="form-group">
-            @Html.DisplayName("Name")
-            @Html.Editor("Name", new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-        <div class="form-group">
-            @Html.DisplayNameFor(model => model.Password)
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-        <div class="form-group">
-            @Html.DisplayName("Mail")
-            @Html.TextBox("Mail", @Model.Mail, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.DisplayName("Tel")
-            @Html.TextBoxFor(model => model.Tel, new { @class = "form-controdl" })
-        </div>
-        <input type="submit" class="btn btn-primary" />
-    </form>
-</div>
-<div>
-    <h2 class="display-4 mb-4">Welcome</h2>
-    <ul>
-        @{
-            int totalp = 0;
-            int totaln = 0;
-        }
-        @for (int i = 2; i <= 20; i++)
-        {
-            bool flg = true;
-            @for (int j = 2; j <= i / 2; j++)
-            {
-                @if (i % j == 0)
-                {
-                    flg = false;
-                }
-            }
-            @if (flg)
-            {
-                totalp += i;
-                <li>@i は素数です。(total:@totalp)</li>
-            }
-            else
-            {
-                totaln += i;
-                <li>@i は素数でない。[total:@totaln]</li>
-            }
-        }
-    </ul>
-</div>
-<div>
-    <p class="h4">@(Model.Num)は、<b>@(Model.Num % 2 == 0 ? "偶数" : "奇数")</b>です。</b></p>
-</div>
-<div>
-    <p class="h4">@hello("太郎")</p>
-    <p class="h4">@Model.Num の合計は、@total(Model.Num) 。</p>
-</div>
-<div>
-    <h2 class="display-4 mb-4">@hello0("Hanako")</h2>
-    <p class="h4">@showList(data)</p>
-</div>
+    </tbody>
+</table>

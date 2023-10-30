@@ -1,45 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using SampleRazorApp.Models;
 
-namespace SampleRazorApp.Pages;
-
-public class IndexModel : PageModel
+namespace SampleRazorApp.Pages
 {
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(ILogger<IndexModel> logger)
+    public class IndexModel : PageModel
     {
-        _logger = logger;
+        private readonly SampleRazorAppContext _context;
+
+        public IndexModel(SampleRazorAppContext context)
+        {
+            _context = context;
+        }
+
+        public IList<Person> Person { get;set; } = default!;
+
+        public async Task OnGetAsync()
+        {
+            if (_context.Person != null)
+            {
+                Person = await _context.Person.ToListAsync();
+            }
+        }
     }
-
-    public string Message { get; set; } = "sample message";
-
-    [DataType(DataType.Text)]
-    public string Name { get; set; }
-
-    [DataType(DataType.Password)]
-    public string Password { get; set; }
-
-    [DataType(DataType.EmailAddress)]
-    public string Mail { get; set; }
-
-    [DataType(DataType.PhoneNumber)]
-    public string Tel { get; set; }
-
-    [BindProperty(SupportsGet = true)]
-    public int Num { get; set; }
-
-    public void OnGet()
-    {
-        Message = "何か書いてください。";
-
-    }
-
-    public void OnPost(string name, string password, string mail, string tel)
-    {
-        Message = "[Name: " + name + ", password:(" + password.Length + " chargs), mail:" + mail + " <" + tel + ">]";
-    }
-
 }
-
