@@ -13,4 +13,6 @@ using SampleRazorApp.Models;
         }
 
         public DbSet<SampleRazorApp.Models.Person> Person { get; set; } = default!;
+
+        public DbSet<SampleRazorApp.Models.Message> Message { get; set; } = default!;
     }

@@ -15,5 +15,8 @@ namespace SampleRazorApp.Models
         [Display(Name = "年齢")]
         [Range(0, 200, ErrorMessage = "0以上、200以下の値にしてください。")]
         public int Age { get; set; }
+
+        [Display(Name = "投稿")]
+        public ICollection<Message> Messages { get; set; }
     }
 }
