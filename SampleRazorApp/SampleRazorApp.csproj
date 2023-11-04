@@ -25,10 +25,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\" />
-    <None Remove="Pages\Msg\" />
+    <None Remove="Pages\Messages\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Pages\Msg\" />
+    <Folder Include="Pages\Messages\" />
   </ItemGroup>
 </Project>

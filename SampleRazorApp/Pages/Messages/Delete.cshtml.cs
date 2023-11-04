@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SampleRazorApp.Models;
 
-namespace SampleRazorApp.Pages.Msg
+namespace SampleRazorApp.Pages.Messages
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace SampleRazorApp.Pages.Msg
         }
 
         [BindProperty]
-      public Message Message { get; set; } = default!;
+        public Message Message { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -34,7 +34,7 @@ namespace SampleRazorApp.Pages.Msg
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Message = message;
             }

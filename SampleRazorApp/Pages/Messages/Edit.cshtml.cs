@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SampleRazorApp.Models;
 
-namespace SampleRazorApp.Pages.Msg
+namespace SampleRazorApp.Pages.Messages
 {
     public class EditModel : PageModel
     {
@@ -29,13 +29,13 @@ namespace SampleRazorApp.Pages.Msg
                 return NotFound();
             }
 
-            var message =  await _context.Message.FirstOrDefaultAsync(m => m.MessageId == id);
+            var message = await _context.Message.FirstOrDefaultAsync(m => m.MessageId == id);
             if (message == null)
             {
                 return NotFound();
             }
             Message = message;
-           ViewData["PersonId"] = new SelectList(_context.Person, "PersonId", "Name");
+            ViewData["PersonId"] = new SelectList(_context.Person, "PersonId", "Name");
             return Page();
         }
 
@@ -71,7 +71,7 @@ namespace SampleRazorApp.Pages.Msg
 
         private bool MessageExists(int id)
         {
-          return (_context.Message?.Any(e => e.MessageId == id)).GetValueOrDefault();
+            return (_context.Message?.Any(e => e.MessageId == id)).GetValueOrDefault();
         }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SampleRazorApp.Models;
 
-namespace SampleRazorApp.Pages.Msg
+namespace SampleRazorApp.Pages.Messages
 {
     public class IndexModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace SampleRazorApp.Pages.Msg
             _context = context;
         }
 
-        public IList<Message> Message { get;set; } = default!;
+        public IList<Message> Message { get; set; } = default!;
 
         public async Task OnGetAsync()
         {

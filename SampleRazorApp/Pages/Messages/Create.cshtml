@@ -1,5 +1,5 @@
 @page
-@model SampleRazorApp.Pages.Msg.CreateModel
+@model SampleRazorApp.Pages.Messages.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Message.PersonId" class="control-label"></label>
-                <select asp-for="Message.PersonId" class ="form-control" asp-items="ViewBag.PersonId"></select>
+                <select asp-for="Message.PersonId" class="form-control" asp-items="ViewBag.PersonId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
