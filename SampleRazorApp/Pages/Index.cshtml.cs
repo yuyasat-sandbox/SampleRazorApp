@@ -18,13 +18,13 @@ namespace SampleRazorApp.Pages
             _context = context;
         }
 
-        public IList<Person> Person { get;set; } = default!;
+        public IList<Person> Person { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
             if (_context.Person != null)
             {
-                Person = await _context.Person.ToListAsync();
+                Person = await _context.Person.Include("Messages").ToListAsync();
             }
         }
     }
